@@ -13,7 +13,7 @@ def writeFirstLine(ref):
     ref.write("time, temp (C), gas (ohm), humidity (%), pressure (hPa), altitude (meters)\r\n")
 
 #open file here
-baseFilename = "/mnt/nt-storage/data"
+baseFilename = "/mnt/nt-storage/data/"
 filename = baseFilename + "full" + str(datetime.now()) + ".csv"
 fullFileRef = open(filename, "w+")
 writeFirstLine(fullFileRef)
@@ -22,7 +22,8 @@ minuteTimer = 60
 
 while True:
     if (minuteTimer == 60):
-        filename = baseFileName + str(datetime.now()) + ".csv"
+        filename = baseFilename + str(datetime.now()) + ".csv"
+        #print(filename)
         newRef = open(filename, "w+")
         writeFirstLine(newRef)
         newRef.close()
