@@ -13,7 +13,8 @@ def writeFirstLine(ref):
     ref.write("time, temp (C), gas (ohm), humidity (%), pressure (hPa), altitude (meters)\r\n")
 
 #open file here
-filename = "full" + str(datetime.now()) + ".csv"
+baseFilename = "/mnt/nt-storage/data"
+filename = baseFilename + "full" + str(datetime.now()) + ".csv"
 fullFileRef = open(filename, "w+")
 writeFirstLine(fullFileRef)
 
@@ -21,17 +22,17 @@ minuteTimer = 60
 
 while True:
     if (minuteTimer == 60):
-        filename = str(datetime.now()) + ".csv"
+        filename = baseFileName + str(datetime.now()) + ".csv"
         newRef = open(filename, "w+")
         writeFirstLine(newRef)
         newRef.close()
         minuteTimer = 0
 
-    print("\nTemperature: %0.1f C" % bme680.temperature)
-    print("Gas: %d ohm" % bme680.gas)
-    print("Humidity: %0.1f %%" % bme680.humidity)
-    print("Pressure: %0.3f hPa" % bme680.pressure)
-    print("Altitude: %0.2f meters" % bme680.altitude)
+    #print("\nTemperature: %0.1f C" % bme680.temperature)
+    #print("Gas: %d ohm" % bme680.gas)
+    #print("Humidity: %0.1f %%" % bme680.humidity)
+    #print("Pressure: %0.3f hPa" % bme680.pressure)
+    #print("Altitude: %0.2f meters" % bme680.altitude)
 
     data = "{}, {}, {}, {}, {}, {}\r\n".format(datetime.now(), bme680.temperature, bme680.gas, bme680.humidity, bme680.pressure, bme680.altitude)
     
