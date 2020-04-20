@@ -17,7 +17,7 @@ def writeFirstLine(ref):
 def getTime():
     #print(rtc.datetime)
     rtctime = rtc.datetime
-    rtime = "{}-{}-{} {:0=2d}:{:0=2d}:{:0=2d}".format( \
+    rtime = "{}-{}-{} {:0=2d}.{:0=2d}.{:0=2d}".format( \
         rtctime.tm_mon, rtctime.tm_mday, rtctime.tm_year, \
         rtctime.tm_hour, rtctime.tm_min, rtctime.tm_sec \
     )
