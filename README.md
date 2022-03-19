@@ -21,7 +21,7 @@ if bme280
 ```
 git checkout bme280
 pip install board adafruit-circuitpython-bme280 adafruit-circuitpython-ds3231
-
+```
 
 # Set time
 ```
