@@ -1,18 +1,18 @@
 import time
 import board
 from busio import I2C
-import adafruit_bme680
-import adafruit_pcf8523
+from adafruit_bme280 import basic as adafruit_bme280
+import adafruit_ds3231
 from datetime import datetime
 
 i2c = I2C(board.SCL, board.SDA)
-rtc = adafruit_pcf8523.PCF8523(i2c)
-bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
+rtc = adafruit_ds3231.DS3231(i2c)
+bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c,address=0x76)
 
-bme680.sea_level_pressure = 1013.25
+bme280.sea_level_pressure = 1013.25
 
 def writeFirstLine(ref):
-    ref.write("time, temp (C), gas (ohm), humidity (%), pressure (hPa), altitude (meters)\r\n")
+    ref.write("time, temp (C), humidity (%), pressure (hPa), altitude (meters)\r\n")
 
 def getTime():
     #print(rtc.datetime)
@@ -48,7 +48,7 @@ while True:
     #print("Pressure: %0.3f hPa" % bme680.pressure)
     #print("Altitude: %0.2f meters" % bme680.altitude)
 
-    data = "{}, {}, {}, {}, {}, {}\r\n".format(getTime(), bme680.temperature, bme680.gas, bme680.humidity, bme680.pressure, bme680.altitude)
+    data = "{}, {}, {}, {}, {}\r\n".format(getTime(), bme280.temperature, bme280.humidity, bme280.pressure, bme280.altitude)
     
     fullFileRef.write(data)
 
