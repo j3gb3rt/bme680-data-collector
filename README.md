@@ -26,6 +26,7 @@ pip install board adafruit-circuitpython-bme280 adafruit-circuitpython-ds3231
 # Set time
 ```
 python3
+>>> import time
 >>> import board
 >>> import adafruit_ds3231
 >>> i2c = board.I2C()
