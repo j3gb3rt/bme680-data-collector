@@ -56,6 +56,6 @@ while True:
     fileRef.write(data)
     fileRef.close()
 
-    minuteTimer += 1
-    time.sleep(1)
+    minuteTimer += .1
+    time.sleep(.1)
 
